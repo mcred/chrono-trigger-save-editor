@@ -55,17 +55,26 @@ func (g *Game) Save() {
 func generateChecksum(g *Game) {
 	for slot := 1; slot <= 3; slot ++ {
 		checksum := 0
+		//set range for slot
 		max := slot * 0xA00
 		min := max - 0xA00
+
 		for i := min; i < max; i++ {
+
+			//restrict checksum to 16 bits
 			if checksum > 0xFFFF {
 				checksum -= 0xFFFF
 			}
+
+			//load 16 bit values
 			if i % 2 == 0 {
 				checksum += g.GetValue(Attribute{i, true})
 			}
 		}
+		//set location for checksum per slot
 		l := 0x1FF0 + ((slot - 1) * 2)
+
+		//write checksum to location
 		g.SetValue(Attribute{l, true}, checksum)
 	}
 }
