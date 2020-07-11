@@ -1,4 +1,4 @@
-package app__test
+package storage_test
 
 import (
 	"ChronoTrigger/internal/app/storage"
@@ -6,8 +6,8 @@ import (
 	"testing"
 )
 
-var path1 = "../files/save1.sav"
-var path2 = "../files/save2.sav"
+var path1 = "../../files/save1.sav"
+var path2 = "../../files/save2.sav"
 var game1 = storage.Open(path1)
 var game2 = storage.Open(path2)
 
@@ -31,7 +31,7 @@ func TestCanGet16BitValue(t *testing.T) {
 	}
 }
 
-func TestCanSave8BitValue(t *testing.T) {
+func TestCanSet8BitValue(t *testing.T) {
 	game1.SetValue(storage.Attribute{0x203, false}, 255)
 	v := game1.GetValue(storage.Attribute{0x203, false})
 	if v != 255 {
@@ -39,7 +39,7 @@ func TestCanSave8BitValue(t *testing.T) {
 	}
 }
 
-func TestCanSave16BitValue(t *testing.T) {
+func TestCanSet16BitValue(t *testing.T) {
 	game2.SetValue(storage.Attribute{0x203, true}, 2003)
 	v := game2.GetValue(storage.Attribute{0x203, true})
 	if v != 2003 {
@@ -48,22 +48,24 @@ func TestCanSave16BitValue(t *testing.T) {
 }
 
 func TestCanGenerateCheckSum(t *testing.T) {
-	game1.Save()
-	c := game1.GetValue(storage.Attribute{0x1FF0, true})
+	g1 := storage.Open(path1)
+	g1.Save()
+	c := g1.GetValue(storage.Attribute{0x1FF0, true})
 	if c != 33610 {
 		t.Errorf("Checksum invalid: expected %d, actual %d", 33610, c)
 	}
 
-	game2.Save()
-	c = game2.GetValue(storage.Attribute{0x1FF0, true})
+	g2 := storage.Open(path2)
+	g2.Save()
+	c = g2.GetValue(storage.Attribute{0x1FF0, true})
 	if c != 25819 {
 		t.Errorf("Checksum invalid: expected %d, actual %d", 25819, c)
 	}
-	c = game2.GetValue(storage.Attribute{0x1FF2, true})
+	c = g2.GetValue(storage.Attribute{0x1FF2, true})
 	if c != 25060 {
 		t.Errorf("Checksum invalid: expected %d, actual %d", 25060, c)
 	}
-	c = game2.GetValue(storage.Attribute{0x1FF4, true})
+	c = g2.GetValue(storage.Attribute{0x1FF4, true})
 	if c != 16873 {
 		t.Errorf("Checksum invalid: expected %d, actual %d", 16873, c)
 	}
