@@ -8,7 +8,7 @@ import (
 
 type Attribute struct {
 	Location int
-	Is16Bit bool
+	Is16Bit  bool
 }
 
 type Game struct {
@@ -19,7 +19,7 @@ type Game struct {
 func (g *Game) GetValue(a Attribute) uint {
 	var r uint
 	if a.Is16Bit {
-		r = uint(binary.LittleEndian.Uint16(g.Data[a.Location:a.Location+2]))
+		r = uint(binary.LittleEndian.Uint16(g.Data[a.Location : a.Location+2]))
 	} else {
 		r = uint(g.Data[a.Location])
 	}
@@ -31,7 +31,7 @@ func (g *Game) SetValue(a Attribute, v uint) {
 		b := make([]byte, 2)
 		binary.LittleEndian.PutUint16(b, uint16(v))
 		g.Data[a.Location] = b[0]
-		g.Data[a.Location + 1] = b[1]
+		g.Data[a.Location+1] = b[1]
 	} else {
 		g.Data[a.Location] = byte(v)
 	}
@@ -42,7 +42,7 @@ func Open(path string) Game {
 	if err != nil {
 		panic(err)
 	}
-	return Game{Path: path, Data:f}
+	return Game{Path: path, Data: f}
 }
 
 func (g *Game) Save() {
@@ -51,14 +51,14 @@ func (g *Game) Save() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println( g.Path + " updated.")
+	fmt.Println(g.Path + " updated.")
 }
 
 /*
 Thanks to https://github.com/mikearnos/snessum for help with this
- */
+*/
 func (g *Game) generateChecksum() {
-	for slot := 1; slot <= 3; slot ++ {
+	for slot := 1; slot <= 3; slot++ {
 		var checksum uint = 0
 		max := (slot * 0xA00) - 2
 		min := (slot - 1) * 0xA00
