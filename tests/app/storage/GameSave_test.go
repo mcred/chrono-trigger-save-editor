@@ -25,9 +25,9 @@ func TestCanGet8BitValue(t *testing.T) {
 }
 
 func TestCanGet16BitValue(t *testing.T) {
-	v := game2.GetValue(storage.Attribute{0x203, true})
-	if v != 66 {
-		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 66, v)
+	v := game2.GetValue(storage.Attribute{0x1FF0, true})
+	if v != 25819 {
+		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 25819, v)
 	}
 }
 
@@ -51,8 +51,8 @@ func TestCanGenerateCheckSum(t *testing.T) {
 	g1 := storage.Open(path1)
 	g1.Save()
 	c := g1.GetValue(storage.Attribute{0x1FF0, true})
-	if c != 33610 {
-		t.Errorf("Checksum invalid: expected %d, actual %d", 33610, c)
+	if c != 46426 {
+		t.Errorf("Checksum invalid: expected %d, actual %d", 46426, c)
 	}
 
 	g2 := storage.Open(path2)
