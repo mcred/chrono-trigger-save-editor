@@ -54,6 +54,9 @@ func (g *Game) Save() {
 	fmt.Println( g.Path + " updated.")
 }
 
+/*
+Thanks to https://github.com/mikearnos/snessum for help with this
+ */
 func (g *Game) generateChecksum() {
 	for slot := 1; slot <= 3; slot ++ {
 		var checksum uint = 0
