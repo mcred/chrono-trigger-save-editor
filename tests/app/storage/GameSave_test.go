@@ -19,8 +19,8 @@ func TestCanLoad(t *testing.T) {
 
 func TestCanGet8BitValue(t *testing.T) {
 	v := game1.GetValue(storage.Attribute{0x203, false})
-	if v != 69 {
-		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 69, v)
+	if v != 70 {
+		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 70, v)
 	}
 }
 
