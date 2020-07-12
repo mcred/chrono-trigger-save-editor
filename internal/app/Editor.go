@@ -60,10 +60,10 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 	fmt.Print("Current Evade: ")
 	fmt.Println(g.GetValue(character.CurrentEvade))
 	fmt.Print("Current Magic Defence: ")
-	fmt.Println(g.GetValue(character.CurrentMagicDefence))
+	fmt.Println(g.GetValue(character.CurrentMagicDefense))
 	fmt.Print("Current Attack: ")
 	fmt.Println(g.GetValue(character.CurrentAttack))
-	fmt.Print("Current Defence: ")
+	fmt.Print("Current Defense: ")
 	fmt.Println(g.GetValue(character.CurrentDefense))
 	fmt.Print("Current Max HP: ")
 	fmt.Println(g.GetValue(character.CurrentMaxHP))
@@ -75,4 +75,10 @@ func Run() {
 
 	fmt.Println("Crono")
 	showCharacterAttributes(characters.Crono(), GameData)
+
+	fmt.Println("Marle")
+	showCharacterAttributes(characters.Marle(), GameData)
+
+	fmt.Println("Lucca")
+	showCharacterAttributes(characters.Lucca(), GameData)
 }

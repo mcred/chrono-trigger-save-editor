@@ -30,7 +30,7 @@ type Character struct {
 	CurrentMagic        storage.Attribute
 	CurrentHit          storage.Attribute
 	CurrentEvade        storage.Attribute
-	CurrentMagicDefence storage.Attribute
+	CurrentMagicDefense storage.Attribute
 	CurrentAttack       storage.Attribute
 	CurrentDefense      storage.Attribute
 	CurrentMaxHP        storage.Attribute
@@ -65,7 +65,7 @@ func CreateCharacter(root int) Character {
 		CurrentMagic:        storage.Attribute{root + 0x39, false},
 		CurrentHit:          storage.Attribute{root + 0x3A, false},
 		CurrentEvade:        storage.Attribute{root + 0x3B, false},
-		CurrentMagicDefence: storage.Attribute{root + 0x3C, false},
+		CurrentMagicDefense: storage.Attribute{root + 0x3C, false},
 		CurrentAttack:       storage.Attribute{root + 0x3D, false},
 		CurrentDefense:      storage.Attribute{root + 0x3E, false},
 		CurrentMaxHP:        storage.Attribute{root + 0x3F, true},
