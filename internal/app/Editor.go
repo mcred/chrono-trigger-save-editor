@@ -59,7 +59,7 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 	fmt.Println(g.GetValue(character.CurrentHit))
 	fmt.Print("Current Evade: ")
 	fmt.Println(g.GetValue(character.CurrentEvade))
-	fmt.Print("Current Magic Defence: ")
+	fmt.Print("Current Magic Defense: ")
 	fmt.Println(g.GetValue(character.CurrentMagicDefense))
 	fmt.Print("Current Attack: ")
 	fmt.Println(g.GetValue(character.CurrentAttack))
