@@ -59,7 +59,7 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 	fmt.Println(g.GetValue(character.CurrentHit))
 	fmt.Print("Current Evade: ")
 	fmt.Println(g.GetValue(character.CurrentEvade))
-	fmt.Print("Current Magic Defense: ")
+	fmt.Print("Current Magic Defence: ")
 	fmt.Println(g.GetValue(character.CurrentMagicDefense))
 	fmt.Print("Current Attack: ")
 	fmt.Println(g.GetValue(character.CurrentAttack))
@@ -72,13 +72,6 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 func Run() {
 	path := "./tests/files/save1.sav"
 	GameData := storage.Open(path)
-
-	fmt.Println("Crono")
-	showCharacterAttributes(characters.Crono(), GameData)
-
-	fmt.Println("Marle")
-	showCharacterAttributes(characters.Marle(), GameData)
-
-	fmt.Println("Lucca")
-	showCharacterAttributes(characters.Lucca(), GameData)
+	fmt.Println(GameData.GetValue(storage.Attribute{0x5F5, false}))
+	fmt.Println(GameData.GetValue(storage.Attribute{0x5F6, false}))
 }
