@@ -4,6 +4,6 @@ import (
 	"ChronoTrigger/internal/app"
 )
 
-func main()  {
+func main() {
 	app.Run()
 }
