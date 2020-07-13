@@ -21,7 +21,7 @@ type Character struct {
 	Experience          storage.Attribute
 	Equip1              storage.Attribute
 	Equip2              storage.Attribute
-	Equip3              storage.Attribute
+	Weapon              storage.Attribute
 	Equip4              storage.Attribute
 	ExpToLevel          storage.Attribute
 	CurrentPower        storage.Attribute
@@ -56,7 +56,7 @@ func CreateCharacter(root int) Character {
 		Experience:          storage.Attribute{root + 0x13, true}, //Maybe 24Bit
 		Equip1:              storage.Attribute{root + 0x27, false},
 		Equip2:              storage.Attribute{root + 0x28, false},
-		Equip3:              storage.Attribute{root + 0x29, false},
+		Weapon:              storage.Attribute{root + 0x29, false},
 		Equip4:              storage.Attribute{root + 0x2A, false},
 		ExpToLevel:          storage.Attribute{root + 0x2B, true},
 		CurrentPower:        storage.Attribute{root + 0x36, false},
