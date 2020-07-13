@@ -9,9 +9,9 @@ type Character struct {
 	HP                  storage.Attribute
 	MaxHP               storage.Attribute
 	MP                  storage.Attribute
-	MaxMP               storage.Attribute
-	BasePower           storage.Attribute
-	BaseStamina         storage.Attribute
+	MaxMP            storage.Attribute
+	BasePower        storage.Attribute
+	BaseStamina      storage.Attribute
 	BaseSpeed           storage.Attribute
 	BaseMagic           storage.Attribute
 	BaseHit             storage.Attribute
@@ -19,10 +19,10 @@ type Character struct {
 	BaseMagicDefense    storage.Attribute
 	Level               storage.Attribute
 	Experience          storage.Attribute
-	Equip1              storage.Attribute
-	Equip2              storage.Attribute
-	Equip3              storage.Attribute
-	Equip4              storage.Attribute
+	Helmet              storage.Attribute
+	Armor               storage.Attribute
+	Weapon              storage.Attribute
+	Relic               storage.Attribute
 	ExpToLevel          storage.Attribute
 	CurrentPower        storage.Attribute
 	CurrentStamina      storage.Attribute
@@ -44,9 +44,9 @@ func CreateCharacter(root int) Character {
 		HP:                  storage.Attribute{root + 0x03, true},
 		MaxHP:               storage.Attribute{root + 0x05, true},
 		MP:                  storage.Attribute{root + 0x07, true},
-		MaxMP:               storage.Attribute{root + 0x09, true},
-		BasePower:           storage.Attribute{root + 0x0B, false},
-		BaseStamina:         storage.Attribute{root + 0x0C, false},
+		MaxMP:            storage.Attribute{root + 0x09, true},
+		BasePower:        storage.Attribute{root + 0x0B, false},
+		BaseStamina:      storage.Attribute{root + 0x0C, false},
 		BaseSpeed:           storage.Attribute{root + 0x0D, false},
 		BaseMagic:           storage.Attribute{root + 0x0E, false},
 		BaseHit:             storage.Attribute{root + 0x0F, false},
@@ -54,10 +54,10 @@ func CreateCharacter(root int) Character {
 		BaseMagicDefense:    storage.Attribute{root + 0x11, false},
 		Level:               storage.Attribute{root + 0x12, false},
 		Experience:          storage.Attribute{root + 0x13, true}, //Maybe 24Bit
-		Equip1:              storage.Attribute{root + 0x27, false},
-		Equip2:              storage.Attribute{root + 0x28, false},
-		Equip3:              storage.Attribute{root + 0x29, false},
-		Equip4:              storage.Attribute{root + 0x2A, false},
+		Helmet:              storage.Attribute{root + 0x27, false},
+		Armor:               storage.Attribute{root + 0x28, false},
+		Weapon:              storage.Attribute{root + 0x29, false},
+		Relic:               storage.Attribute{root + 0x2A, false},
 		ExpToLevel:          storage.Attribute{root + 0x2B, true},
 		CurrentPower:        storage.Attribute{root + 0x36, false},
 		CurrentStamina:      storage.Attribute{root + 0x37, false},

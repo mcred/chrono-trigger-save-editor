@@ -2,6 +2,7 @@ package app
 
 import (
 	"ChronoTrigger/internal/app/characters"
+	"ChronoTrigger/internal/app/inventory"
 	"ChronoTrigger/internal/app/storage"
 	"fmt"
 )
@@ -37,14 +38,14 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 	fmt.Println(g.GetValue(character.Level))
 	fmt.Print("Experience: ")
 	fmt.Println(g.GetValue(character.Experience))
-	fmt.Print("Equip1: ")
-	fmt.Println(g.GetValue(character.Equip1))
-	fmt.Print("Equip2: ")
-	fmt.Println(g.GetValue(character.Equip2))
-	fmt.Print("Equip3: ")
-	fmt.Println(g.GetValue(character.Equip3))
-	fmt.Print("Equip4: ")
-	fmt.Println(g.GetValue(character.Equip4))
+	fmt.Print("Helmet: ")
+	fmt.Println(g.GetValue(character.Helmet))
+	fmt.Print("Armors: ")
+	fmt.Println(g.GetValue(character.Armor))
+	fmt.Print("Weapon: ")
+	fmt.Println(g.GetValue(character.Weapon))
+	fmt.Print("Relic: ")
+	fmt.Println(g.GetValue(character.Relic))
 	fmt.Print("Exp To Level: ")
 	fmt.Println(g.GetValue(character.ExpToLevel))
 	fmt.Print("Current Power: ")
@@ -72,6 +73,54 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 func Run() {
 	path := "./tests/files/save1.sav"
 	GameData := storage.Open(path)
-	fmt.Println(GameData.GetValue(storage.Attribute{0x5F5, false}))
-	fmt.Println(GameData.GetValue(storage.Attribute{0x5F6, false}))
+
+	fmt.Println("Crono")
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Crono().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Crono().Armor)))
+	fmt.Println(inventory.Swords().GetValByID(GameData.GetValue(characters.Crono().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Crono().Relic)))
+	fmt.Println()
+
+	fmt.Println("Marle")
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Marle().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Marle().Armor)))
+	fmt.Println(inventory.Bows().GetValByID(GameData.GetValue(characters.Marle().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Marle().Relic)))
+	fmt.Println()
+
+	fmt.Println("Lucca")
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Lucca().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Lucca().Armor)))
+	fmt.Println(inventory.Guns().GetValByID(GameData.GetValue(characters.Lucca().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Lucca().Relic)))
+	fmt.Println()
+
+	fmt.Println("Frog")
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Frog().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Frog().Armor)))
+	fmt.Println(inventory.Blades().GetValByID(GameData.GetValue(characters.Frog().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Frog().Relic)))
+	fmt.Println()
+
+	fmt.Println("Robo")
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Robo().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Robo().Armor)))
+	fmt.Println(inventory.Arms().GetValByID(GameData.GetValue(characters.Robo().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Robo().Relic)))
+	fmt.Println()
+
+	fmt.Println("Ayla")
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Ayla().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Ayla().Armor)))
+	fmt.Println(inventory.Fists().GetValByID(GameData.GetValue(characters.Ayla().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Ayla().Relic)))
+	fmt.Println()
+
+	fmt.Println("Magus")
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Magus().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Magus().Armor)))
+	fmt.Println(inventory.Scythes().GetValByID(GameData.GetValue(characters.Magus().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Magus().Relic)))
+	fmt.Println()
+
 }
