@@ -1,7 +1,7 @@
 package inventory
 
-// Armor : Inventory list of available Armor for All Characters
-func Armor() Inventory {
+// Armors : Inventory list of available Armors for All Characters
+func Armors() Inventory {
 	return []Item{
 		{0x5B, "Hide Tunic"},
 		{0x5C, "Karate Gi"},
@@ -19,11 +19,11 @@ func Armor() Inventory {
 		{0x68, "Lode Vest"},
 		{0x69, "Aeon Suit"},
 		{0x6A, "Zodiac cape"},
-		{0x6B, "Nova Armor"},
+		{0x6B, "Nova Armors"},
 		{0x6C, "Prism Dress"},
-		{0x6D, "Moon Armor"},
-		{0x6E, "Ruby Armor"},
-		{0x6F, "Raven Armor"},
+		{0x6D, "Moon Armors"},
+		{0x6E, "Ruby Armors"},
+		{0x6F, "Raven Armors"},
 		{0x70, "Gloom Cape"},
 		{0x71, "White Mail"},
 		{0x72, "Black Mail"},
