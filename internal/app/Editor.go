@@ -2,6 +2,7 @@ package app
 
 import (
 	"ChronoTrigger/internal/app/characters"
+	"ChronoTrigger/internal/app/inventory"
 	"ChronoTrigger/internal/app/storage"
 	"fmt"
 )
@@ -37,14 +38,14 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 	fmt.Println(g.GetValue(character.Level))
 	fmt.Print("Experience: ")
 	fmt.Println(g.GetValue(character.Experience))
-	fmt.Print("Equip1: ")
-	fmt.Println(g.GetValue(character.Equip1))
-	fmt.Print("Equip2: ")
-	fmt.Println(g.GetValue(character.Equip2))
-	fmt.Print("Equip3: ")
-	fmt.Println(g.GetValue(character.Equip3))
-	fmt.Print("Equip4: ")
-	fmt.Println(g.GetValue(character.Equip4))
+	fmt.Print("Helmet: ")
+	fmt.Println(g.GetValue(character.Helmet))
+	fmt.Print("Armors: ")
+	fmt.Println(g.GetValue(character.Armor))
+	fmt.Print("Weapon: ")
+	fmt.Println(g.GetValue(character.Weapon))
+	fmt.Print("Relic: ")
+	fmt.Println(g.GetValue(character.Relic))
 	fmt.Print("Exp To Level: ")
 	fmt.Println(g.GetValue(character.ExpToLevel))
 	fmt.Print("Current Power: ")
@@ -72,6 +73,18 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 func Run() {
 	path := "./tests/files/save1.sav"
 	GameData := storage.Open(path)
-	fmt.Println(GameData.GetValue(storage.Attribute{0x5F5, false}))
-	fmt.Println(GameData.GetValue(storage.Attribute{0x5F6, false}))
+
+	fmt.Println("Crono")
+	fmt.Println(GameData.GetValue(characters.Crono().Helmet))
+	fmt.Println(GameData.GetValue(characters.Crono().Armor))
+	fmt.Println(GameData.GetValue(characters.Crono().Weapon))
+	fmt.Println(GameData.GetValue(characters.Crono().Relic))
+
+	fmt.Println(inventory.Helmets().GetValByID(GameData.GetValue(characters.Crono().Helmet)))
+	fmt.Println(inventory.Armors().GetValByID(GameData.GetValue(characters.Crono().Armor)))
+	fmt.Println(inventory.Swords().GetValByID(GameData.GetValue(characters.Crono().Weapon)))
+	fmt.Println(inventory.Relics().GetValByID(GameData.GetValue(characters.Crono().Relic)))
+
+	//showCharacterAttributes(characters.Crono(), GameData)
+
 }
