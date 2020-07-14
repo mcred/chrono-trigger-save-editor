@@ -2,74 +2,74 @@ package app
 
 import (
 	"ChronoTrigger/internal/app/characters"
-	"ChronoTrigger/internal/app/inventory"
 	"ChronoTrigger/internal/app/party"
 	"ChronoTrigger/internal/app/storage"
 	"ChronoTrigger/internal/app/utils"
 	"fmt"
 )
 
-func showCharacterAttributes(character characters.Character, g storage.Game) {
+func showCharacterAttributes(c characters.Character, g storage.Game) {
+	fmt.Println(utils.DecodeName(c, g))
 	fmt.Print("Name ID: ")
-	fmt.Println(g.GetValue(character.NameID))
+	fmt.Println(g.GetValue(c.NameID))
 	fmt.Print("Character ID: ")
-	fmt.Println(g.GetValue(character.CharID))
+	fmt.Println(g.GetValue(c.CharID))
 	fmt.Print("Current HP: ")
-	fmt.Println(g.GetValue(character.HP))
+	fmt.Println(g.GetValue(c.HP))
 	fmt.Print("Max Hp: ")
-	fmt.Println(g.GetValue(character.MaxHP))
+	fmt.Println(g.GetValue(c.MaxHP))
 	fmt.Print("Current MP: ")
-	fmt.Println(g.GetValue(character.MP))
+	fmt.Println(g.GetValue(c.MP))
 	fmt.Print("Base Max HP:")
-	fmt.Println(g.GetValue(character.MaxMP))
+	fmt.Println(g.GetValue(c.MaxMP))
 	fmt.Print("Base Power: ")
-	fmt.Println(g.GetValue(character.BasePower))
+	fmt.Println(g.GetValue(c.BasePower))
 	fmt.Print("Base Stamina: ")
-	fmt.Println(g.GetValue(character.BaseStamina))
+	fmt.Println(g.GetValue(c.BaseStamina))
 	fmt.Print("Base Speed: ")
-	fmt.Println(g.GetValue(character.BaseSpeed))
+	fmt.Println(g.GetValue(c.BaseSpeed))
 	fmt.Print("Base Magic: ")
-	fmt.Println(g.GetValue(character.BaseMagic))
+	fmt.Println(g.GetValue(c.BaseMagic))
 	fmt.Print("Base Hit: ")
-	fmt.Println(g.GetValue(character.BaseHit))
+	fmt.Println(g.GetValue(c.BaseHit))
 	fmt.Print("Base Evade: ")
-	fmt.Println(g.GetValue(character.BaseEvade))
+	fmt.Println(g.GetValue(c.BaseEvade))
 	fmt.Print("Base Magic Defence: ")
-	fmt.Println(g.GetValue(character.BaseMagicDefense))
+	fmt.Println(g.GetValue(c.BaseMagicDefense))
 	fmt.Print("Level: ")
-	fmt.Println(g.GetValue(character.Level))
+	fmt.Println(g.GetValue(c.Level))
 	fmt.Print("Experience: ")
-	fmt.Println(g.GetValue(character.Experience))
+	fmt.Println(g.GetValue(c.Experience))
 	fmt.Print("Helmet: ")
-	fmt.Println(g.GetValue(character.Helmet))
+	fmt.Println(g.GetValue(c.Helmet))
 	fmt.Print("Armors: ")
-	fmt.Println(g.GetValue(character.Armor))
+	fmt.Println(g.GetValue(c.Armor))
 	fmt.Print("Weapon: ")
-	fmt.Println(g.GetValue(character.Weapon))
+	fmt.Println(g.GetValue(c.Weapon))
 	fmt.Print("Relic: ")
-	fmt.Println(g.GetValue(character.Relic))
+	fmt.Println(g.GetValue(c.Relic))
 	fmt.Print("Exp To Level: ")
-	fmt.Println(g.GetValue(character.ExpToLevel))
+	fmt.Println(g.GetValue(c.ExpToLevel))
 	fmt.Print("Current Power: ")
-	fmt.Println(g.GetValue(character.CurrentPower))
+	fmt.Println(g.GetValue(c.CurrentPower))
 	fmt.Print("Current Stamina: ")
-	fmt.Println(g.GetValue(character.CurrentStamina))
+	fmt.Println(g.GetValue(c.CurrentStamina))
 	fmt.Print("Current Speed: ")
-	fmt.Println(g.GetValue(character.CurrentSpeed))
+	fmt.Println(g.GetValue(c.CurrentSpeed))
 	fmt.Print("Current Magic: ")
-	fmt.Println(g.GetValue(character.CurrentMagic))
+	fmt.Println(g.GetValue(c.CurrentMagic))
 	fmt.Print("Current Hit: ")
-	fmt.Println(g.GetValue(character.CurrentHit))
+	fmt.Println(g.GetValue(c.CurrentHit))
 	fmt.Print("Current Evade: ")
-	fmt.Println(g.GetValue(character.CurrentEvade))
+	fmt.Println(g.GetValue(c.CurrentEvade))
 	fmt.Print("Current Magic Defence: ")
-	fmt.Println(g.GetValue(character.CurrentMagicDefense))
+	fmt.Println(g.GetValue(c.CurrentMagicDefense))
 	fmt.Print("Current Attack: ")
-	fmt.Println(g.GetValue(character.CurrentAttack))
+	fmt.Println(g.GetValue(c.CurrentAttack))
 	fmt.Print("Current Defense: ")
-	fmt.Println(g.GetValue(character.CurrentDefense))
+	fmt.Println(g.GetValue(c.CurrentDefense))
 	fmt.Print("Current Max HP: ")
-	fmt.Println(g.GetValue(character.CurrentMaxHP))
+	fmt.Println(g.GetValue(c.CurrentMaxHP))
 }
 
 func showPartyAttributes(p party.Party, g storage.Game){
@@ -97,30 +97,20 @@ func showPartyAttributes(p party.Party, g storage.Game){
 	fmt.Println(g.GetValue(p.PosX))
 	fmt.Print("PosY: ")
 	fmt.Println(g.GetValue(p.PosY))
+
+	p.LoadInventory(g)
+	fmt.Println("Inventory: ")
+	for _, item := range p.Inventory {
+		fmt.Print(item.Name)
+		fmt.Print(": ")
+		fmt.Println(item.Count)
+	}
 }
 
 func Run() {
-	path := "./tests/files/save1.sav"
+	path := "./tests/files/save2.sav"
 	GameData := storage.Open(path)
 
-	for i := 0x0; i <= 0xFF; i++ {
-		v := GameData.GetValue(storage.Attribute{i, 1})
-		if v != 0{
-			fmt.Print(inventory.AllItems().GetValByID(v))
-			fmt.Print(" ")
-			fmt.Println(GameData.GetValue(storage.Attribute{i + 0x100, 1}))
-		}
-	}
-
-	//showPartyAttributes(party.GetParty(), GameData)
-
-	fmt.Println(utils.DecodeName(characters.Crono(), GameData))
-	fmt.Println(utils.DecodeName(characters.Marle(), GameData))
-	fmt.Println(utils.DecodeName(characters.Lucca(), GameData))
-	fmt.Println(utils.DecodeName(characters.Frog(), GameData))
-	fmt.Println(utils.DecodeName(characters.Robo(), GameData))
-	fmt.Println(utils.DecodeName(characters.Ayla(), GameData))
-	fmt.Println(utils.DecodeName(characters.Magus(), GameData))
-
-	fmt.Println(utils.EncodeName("Crono"))
+	showCharacterAttributes(characters.Crono(), GameData)
+	showPartyAttributes(party.GetParty(), GameData)
 }
