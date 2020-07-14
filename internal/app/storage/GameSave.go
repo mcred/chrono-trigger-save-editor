@@ -19,6 +19,12 @@ type Game struct {
 func (g *Game) GetValue(a Attribute) uint {
 	var r uint
 	switch a.ByteLen {
+	case 3:
+		b := []byte{0,0,0,0}
+		for i := uint(0); i < a.ByteLen; i++ {
+			b[i] = g.Data[uint(a.Location) + i]
+		}
+		r =  uint(binary.LittleEndian.Uint32(b))
 	case 2:
 		r = uint(binary.LittleEndian.Uint16(g.Data[a.Location : a.Location+2]))
 	default:

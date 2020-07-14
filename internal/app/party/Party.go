@@ -27,7 +27,7 @@ func GetParty() Party {
 		Member2:      storage.Attribute{0x581, 1},
 		Member3:      storage.Attribute{0x582, 1},
 		SaveCount:    storage.Attribute{0x59C, 1},
-		Gold:         storage.Attribute{0x5E0, 2}, //maybe 24 bit
+		Gold:         storage.Attribute{0x5E0, 3},
 		MilliSeconds: storage.Attribute{0x5E3, 1},
 		Seconds:      storage.Attribute{0x5E4, 1},
 		Minutes:      storage.Attribute{0x5E5, 1},

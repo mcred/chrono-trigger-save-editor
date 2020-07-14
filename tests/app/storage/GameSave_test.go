@@ -31,6 +31,13 @@ func TestCanGet16BitValue(t *testing.T) {
 	}
 }
 
+func TestCanGet24BitValue(t *testing.T) {
+	v := game2.GetValue(storage.Attribute{0x5E0, 3})
+	if v != 583 {
+		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 583, v)
+	}
+}
+
 func TestCanSet8BitValue(t *testing.T) {
 	game1.SetValue(storage.Attribute{0x203, 1}, 255)
 	v := game1.GetValue(storage.Attribute{0x203, 1})
