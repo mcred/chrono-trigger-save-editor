@@ -9,9 +9,9 @@ type Character struct {
 	HP                  storage.Attribute
 	MaxHP               storage.Attribute
 	MP                  storage.Attribute
-	MaxMP            storage.Attribute
-	BasePower        storage.Attribute
-	BaseStamina      storage.Attribute
+	MaxMP               storage.Attribute
+	BasePower           storage.Attribute
+	BaseStamina         storage.Attribute
 	BaseSpeed           storage.Attribute
 	BaseMagic           storage.Attribute
 	BaseHit             storage.Attribute
@@ -36,7 +36,7 @@ type Character struct {
 	CurrentMaxHP        storage.Attribute
 }
 
-// CreateCharacter : based off a root position in the save file
+// CreateCharacter : Character based off a root position in the save file
 func CreateCharacter(root int) Character {
 	return Character{
 		NameID:              storage.Attribute{root, false},
@@ -44,9 +44,9 @@ func CreateCharacter(root int) Character {
 		HP:                  storage.Attribute{root + 0x03, true},
 		MaxHP:               storage.Attribute{root + 0x05, true},
 		MP:                  storage.Attribute{root + 0x07, true},
-		MaxMP:            storage.Attribute{root + 0x09, true},
-		BasePower:        storage.Attribute{root + 0x0B, false},
-		BaseStamina:      storage.Attribute{root + 0x0C, false},
+		MaxMP:               storage.Attribute{root + 0x09, true},
+		BasePower:           storage.Attribute{root + 0x0B, false},
+		BaseStamina:         storage.Attribute{root + 0x0C, false},
 		BaseSpeed:           storage.Attribute{root + 0x0D, false},
 		BaseMagic:           storage.Attribute{root + 0x0E, false},
 		BaseHit:             storage.Attribute{root + 0x0F, false},
