@@ -5,6 +5,7 @@ import (
 	"ChronoTrigger/internal/app/inventory"
 	"ChronoTrigger/internal/app/party"
 	"ChronoTrigger/internal/app/storage"
+	"ChronoTrigger/internal/app/utils"
 	"fmt"
 )
 
@@ -112,96 +113,11 @@ func Run() {
 	}
 
 	//showPartyAttributes(party.GetParty(), GameData)
-	fmt.Println(decodeName(characters.Crono(), GameData))
-	fmt.Println(decodeName(characters.Marle(), GameData))
-	fmt.Println(decodeName(characters.Lucca(), GameData))
-	fmt.Println(decodeName(characters.Frog(), GameData))
-	fmt.Println(decodeName(characters.Robo(), GameData))
-	fmt.Println(decodeName(characters.Ayla(), GameData))
-	fmt.Println(decodeName(characters.Magus(), GameData))
-}
-
-func decodeName(c characters.Character, g storage.Game) string {
-	id := g.GetValue(c.NameID)
-	ints := []uint{
-		g.GetValue(storage.Attribute{int(0x5B0 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B1 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B2 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B3 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B4 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B5 + (id * 6)), false}),
-	}
-	var s string
-	for _, i := range ints {
-		s += getCharFromInt(i)
-	}
-	return s
-}
-
-func getCharFromInt(i uint) string {
-	m := map[uint]string{
-		0xA0: "A",
-		0xA1: "B",
-		0xA2: "C",
-		0xA3: "D",
-		0xA4: "E",
-		0xA5: "F",
-		0xA6: "G",
-		0xA7: "H",
-		0xA8: "I",
-		0xA9: "J",
-		0xAA: "K",
-		0xAB: "L",
-		0xAC: "M",
-		0xAD: "N",
-		0xAE: "O",
-		0xAF: "P",
-		0xB0: "Q",
-		0xB1: "R",
-		0xB2: "S",
-		0xB3: "T",
-		0xB4: "U",
-		0xB5: "V",
-		0xB6: "W",
-		0xB7: "X",
-		0xB8: "Y",
-		0xB9: "Z",
-		0xBA: "a",
-		0xBB: "b",
-		0xBC: "c",
-		0xBD: "d",
-		0xBE: "e",
-		0xBF: "f",
-		0xC0: "g",
-		0xC1: "h",
-		0xC2: "i",
-		0xC3: "j",
-		0xC4: "k",
-		0xC5: "l",
-		0xC6: "m",
-		0xC7: "n",
-		0xC8: "o",
-		0xC9: "p",
-		0xCA: "q",
-		0xCB: "r",
-		0xCC: "s",
-		0xCD: "t",
-		0xCE: "u",
-		0xCF: "v",
-		0xD0: "w",
-		0xD1: "x",
-		0xD2: "y",
-		0xD3: "z",
-		0xD4: "0",
-		0xD5: "1",
-		0xD6: "2",
-		0xD7: "3",
-		0xD8: "4",
-		0xD9: "5",
-		0xDA: "6",
-		0xDB: "7",
-		0xDC: "8",
-		0xDD: "9",
-	}
-	return m[i]
+	fmt.Println(utils.DecodeName(characters.Crono(), GameData))
+	fmt.Println(utils.DecodeName(characters.Marle(), GameData))
+	fmt.Println(utils.DecodeName(characters.Lucca(), GameData))
+	fmt.Println(utils.DecodeName(characters.Frog(), GameData))
+	fmt.Println(utils.DecodeName(characters.Robo(), GameData))
+	fmt.Println(utils.DecodeName(characters.Ayla(), GameData))
+	fmt.Println(utils.DecodeName(characters.Magus(), GameData))
 }

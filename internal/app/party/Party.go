@@ -21,7 +21,6 @@ type Party struct{
 	PosY storage.Attribute
 }
 
-
 func GetParty() Party {
 	return Party{
 		Member1:      storage.Attribute{0x580, false},
