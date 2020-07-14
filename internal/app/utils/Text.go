@@ -122,3 +122,12 @@ func DecodeName(c characters.Character, g storage.Game) string {
 	}
 	return s
 }
+
+// EncodeName : []uint Generate uint splice for character string
+func EncodeName(n string) []uint{
+	var i []uint
+	for _, c := range n {
+		i = append(i, GetIntFromChar(string(c)))
+	}
+	return i
+}
