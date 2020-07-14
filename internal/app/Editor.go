@@ -3,6 +3,7 @@ package app
 import (
 	"ChronoTrigger/internal/app/characters"
 	"ChronoTrigger/internal/app/inventory"
+	"ChronoTrigger/internal/app/party"
 	"ChronoTrigger/internal/app/storage"
 	"fmt"
 )
@@ -70,8 +71,35 @@ func showCharacterAttributes(character characters.Character, g storage.Game) {
 	fmt.Println(g.GetValue(character.CurrentMaxHP))
 }
 
+func showPartyAttributes(p party.Party, g storage.Game){
+	fmt.Print("Member1: ")
+	fmt.Println(g.GetValue(p.Member1))
+	fmt.Print("Member2: ")
+	fmt.Println(g.GetValue(p.Member2))
+	fmt.Print("Member3: ")
+	fmt.Println(g.GetValue(p.Member3))
+	fmt.Print("SaveCount: ")
+	fmt.Println(g.GetValue(p.SaveCount))
+	fmt.Print("Gold: ")
+	fmt.Println(g.GetValue(p.Gold))
+	fmt.Print("MilliSeconds: ")
+	fmt.Println(g.GetValue(p.MilliSeconds))
+	fmt.Print("Seconds: ")
+	fmt.Println(g.GetValue(p.Seconds))
+	fmt.Print("Minutes: ")
+	fmt.Println(g.GetValue(p.Minutes))
+	fmt.Print("Hours: ")
+	fmt.Println(g.GetValue(p.Hours))
+	fmt.Print("World: ")
+	fmt.Println(g.GetValue(p.World))
+	fmt.Print("PosX: ")
+	fmt.Println(g.GetValue(p.PosX))
+	fmt.Print("PosY: ")
+	fmt.Println(g.GetValue(p.PosY))
+}
+
 func Run() {
-	path := "./tests/files/save2.sav"
+	path := "./tests/files/save1.sav"
 	GameData := storage.Open(path)
 
 	for i := 0x0; i <= 0xFF; i++ {
@@ -82,5 +110,7 @@ func Run() {
 			fmt.Println(GameData.GetValue(storage.Attribute{i + 0x100, false}))
 		}
 	}
+
+	showPartyAttributes(party.GetParty(), GameData)
 
 }
