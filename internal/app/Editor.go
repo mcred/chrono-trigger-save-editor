@@ -104,15 +104,16 @@ func Run() {
 	GameData := storage.Open(path)
 
 	for i := 0x0; i <= 0xFF; i++ {
-		v := GameData.GetValue(storage.Attribute{i, false})
+		v := GameData.GetValue(storage.Attribute{i, 8})
 		if v != 0{
 			fmt.Print(inventory.AllItems().GetValByID(v))
 			fmt.Print(" ")
-			fmt.Println(GameData.GetValue(storage.Attribute{i + 0x100, false}))
+			fmt.Println(GameData.GetValue(storage.Attribute{i + 0x100, 8}))
 		}
 	}
 
 	//showPartyAttributes(party.GetParty(), GameData)
+
 	fmt.Println(utils.DecodeName(characters.Crono(), GameData))
 	fmt.Println(utils.DecodeName(characters.Marle(), GameData))
 	fmt.Println(utils.DecodeName(characters.Lucca(), GameData))
@@ -120,4 +121,6 @@ func Run() {
 	fmt.Println(utils.DecodeName(characters.Robo(), GameData))
 	fmt.Println(utils.DecodeName(characters.Ayla(), GameData))
 	fmt.Println(utils.DecodeName(characters.Magus(), GameData))
+
+	fmt.Println(utils.EncodeName("Crono"))
 }

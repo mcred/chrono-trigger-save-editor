@@ -109,12 +109,12 @@ func GetIntFromChar(c string) uint {
 func DecodeName(c characters.Character, g storage.Game) string {
 	id := g.GetValue(c.NameID)
 	ints := []uint{
-		g.GetValue(storage.Attribute{int(0x5B0 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B1 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B2 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B3 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B4 + (id * 6)), false}),
-		g.GetValue(storage.Attribute{int(0x5B5 + (id * 6)), false}),
+		g.GetValue(storage.Attribute{int(0x5B0 + (id * 6)), 8}),
+		g.GetValue(storage.Attribute{int(0x5B1 + (id * 6)), 8}),
+		g.GetValue(storage.Attribute{int(0x5B2 + (id * 6)), 8}),
+		g.GetValue(storage.Attribute{int(0x5B3 + (id * 6)), 8}),
+		g.GetValue(storage.Attribute{int(0x5B4 + (id * 6)), 8}),
+		g.GetValue(storage.Attribute{int(0x5B5 + (id * 6)), 8}),
 	}
 	var s string
 	for _, i := range ints {
@@ -125,9 +125,9 @@ func DecodeName(c characters.Character, g storage.Game) string {
 
 // EncodeName : []uint Generate uint splice for character string
 func EncodeName(n string) []uint{
-	var i []uint
-	for _, c := range n {
-		i = append(i, GetIntFromChar(string(c)))
+	i := []uint{0,0,0,0,0,0}
+	for p, c := range n {
+		i[p] = GetIntFromChar(string(c))
 	}
 	return i
 }
