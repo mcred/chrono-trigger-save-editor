@@ -53,7 +53,7 @@ func CreateCharacter(root int) Character {
 		BaseEvade:           storage.Attribute{root + 0x10, 1},
 		BaseMagicDefense:    storage.Attribute{root + 0x11, 1},
 		Level:               storage.Attribute{root + 0x12, 1},
-		Experience:          storage.Attribute{root + 0x13, 2}, //Maybe 24Bit
+		Experience:          storage.Attribute{root + 0x13, 3},
 		Helmet:              storage.Attribute{root + 0x27, 1},
 		Armor:               storage.Attribute{root + 0x28, 1},
 		Weapon:              storage.Attribute{root + 0x29, 1},
