@@ -104,11 +104,11 @@ func Run() {
 	GameData := storage.Open(path)
 
 	for i := 0x0; i <= 0xFF; i++ {
-		v := GameData.GetValue(storage.Attribute{i, 8})
+		v := GameData.GetValue(storage.Attribute{i, 1})
 		if v != 0{
 			fmt.Print(inventory.AllItems().GetValByID(v))
 			fmt.Print(" ")
-			fmt.Println(GameData.GetValue(storage.Attribute{i + 0x100, 8}))
+			fmt.Println(GameData.GetValue(storage.Attribute{i + 0x100, 1}))
 		}
 	}
 

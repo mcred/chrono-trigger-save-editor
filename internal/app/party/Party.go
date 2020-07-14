@@ -23,17 +23,17 @@ type Party struct{
 
 func GetParty() Party {
 	return Party{
-		Member1:      storage.Attribute{0x580, 8},
-		Member2:      storage.Attribute{0x581, 8},
-		Member3:      storage.Attribute{0x582, 8},
-		SaveCount:    storage.Attribute{0x59C, 8},
-		Gold:         storage.Attribute{0x5E0, 16}, //maybe 24 bit
-		MilliSeconds: storage.Attribute{0x5E3, 8},
-		Seconds:      storage.Attribute{0x5E4, 8},
-		Minutes:      storage.Attribute{0x5E5, 8},
-		Hours:        storage.Attribute{0x5E6, 8},
-		World:        storage.Attribute{0x5F3, 16},
-		PosX:         storage.Attribute{0x5F5, 8},
-		PosY:         storage.Attribute{0x5F6, 8},
+		Member1:      storage.Attribute{0x580, 1},
+		Member2:      storage.Attribute{0x581, 1},
+		Member3:      storage.Attribute{0x582, 1},
+		SaveCount:    storage.Attribute{0x59C, 1},
+		Gold:         storage.Attribute{0x5E0, 2}, //maybe 24 bit
+		MilliSeconds: storage.Attribute{0x5E3, 1},
+		Seconds:      storage.Attribute{0x5E4, 1},
+		Minutes:      storage.Attribute{0x5E5, 1},
+		Hours:        storage.Attribute{0x5E6, 1},
+		World:        storage.Attribute{0x5F3, 2},
+		PosX:         storage.Attribute{0x5F5, 1},
+		PosY:         storage.Attribute{0x5F6, 1},
 	}
 }
