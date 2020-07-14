@@ -88,9 +88,21 @@ var CharMap = map[uint]string{
 	0xFF: " ",
 }
 
-// GetCharFromInt : string Get string from CharMap int
+// GetCharFromInt : string Get string from CharMap uint
 func GetCharFromInt(i uint) string {
 	return CharMap[i]
+}
+
+
+// GetIntFromChar: uint Get uint value for string character
+func GetIntFromChar(c string) uint {
+	var i uint
+	for index,element := range CharMap{
+		if element == c {
+			i = index
+		}
+	}
+	return i
 }
 
 // DecodeName : string Get name for character from Save File
