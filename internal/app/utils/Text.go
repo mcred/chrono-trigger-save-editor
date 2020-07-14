@@ -109,12 +109,12 @@ func GetIntFromChar(c string) uint {
 func DecodeName(c characters.Character, g storage.Game) string {
 	id := g.GetValue(c.NameID)
 	ints := []uint{
-		g.GetValue(storage.Attribute{int(0x5B0 + (id * 6)), 8}),
-		g.GetValue(storage.Attribute{int(0x5B1 + (id * 6)), 8}),
-		g.GetValue(storage.Attribute{int(0x5B2 + (id * 6)), 8}),
-		g.GetValue(storage.Attribute{int(0x5B3 + (id * 6)), 8}),
-		g.GetValue(storage.Attribute{int(0x5B4 + (id * 6)), 8}),
-		g.GetValue(storage.Attribute{int(0x5B5 + (id * 6)), 8}),
+		g.GetValue(storage.Attribute{int(0x5B0 + (id * 6)), 1}),
+		g.GetValue(storage.Attribute{int(0x5B1 + (id * 6)), 1}),
+		g.GetValue(storage.Attribute{int(0x5B2 + (id * 6)), 1}),
+		g.GetValue(storage.Attribute{int(0x5B3 + (id * 6)), 1}),
+		g.GetValue(storage.Attribute{int(0x5B4 + (id * 6)), 1}),
+		g.GetValue(storage.Attribute{int(0x5B5 + (id * 6)), 1}),
 	}
 	var s string
 	for _, i := range ints {
