@@ -1,7 +1,7 @@
 package inventory
 
 // Helmets : Inventory list of available Helmets for All Characters
-func Helmets() Inventory{
+func Helmets() Inventory {
 	return []Item{
 		{0x7C, "Hide Cap"},
 		{0x7D, "BronzeHelm"},
