@@ -9,9 +9,9 @@ type Character struct {
 	HP                  storage.Attribute
 	MaxHP               storage.Attribute
 	MP                  storage.Attribute
-	MaxMP            storage.Attribute
-	BasePower        storage.Attribute
-	BaseStamina      storage.Attribute
+	MaxMP               storage.Attribute
+	BasePower           storage.Attribute
+	BaseStamina         storage.Attribute
 	BaseSpeed           storage.Attribute
 	BaseMagic           storage.Attribute
 	BaseHit             storage.Attribute
@@ -36,38 +36,38 @@ type Character struct {
 	CurrentMaxHP        storage.Attribute
 }
 
-// CreateCharacter : based off a root position in the save file
+// CreateCharacter : Character based off a root position in the save file
 func CreateCharacter(root int) Character {
 	return Character{
-		NameID:              storage.Attribute{root, false},
-		CharID:              storage.Attribute{root + 0x01, false},
-		HP:                  storage.Attribute{root + 0x03, true},
-		MaxHP:               storage.Attribute{root + 0x05, true},
-		MP:                  storage.Attribute{root + 0x07, true},
-		MaxMP:            storage.Attribute{root + 0x09, true},
-		BasePower:        storage.Attribute{root + 0x0B, false},
-		BaseStamina:      storage.Attribute{root + 0x0C, false},
-		BaseSpeed:           storage.Attribute{root + 0x0D, false},
-		BaseMagic:           storage.Attribute{root + 0x0E, false},
-		BaseHit:             storage.Attribute{root + 0x0F, false},
-		BaseEvade:           storage.Attribute{root + 0x10, false},
-		BaseMagicDefense:    storage.Attribute{root + 0x11, false},
-		Level:               storage.Attribute{root + 0x12, false},
-		Experience:          storage.Attribute{root + 0x13, true}, //Maybe 24Bit
-		Helmet:              storage.Attribute{root + 0x27, false},
-		Armor:               storage.Attribute{root + 0x28, false},
-		Weapon:              storage.Attribute{root + 0x29, false},
-		Relic:               storage.Attribute{root + 0x2A, false},
-		ExpToLevel:          storage.Attribute{root + 0x2B, true},
-		CurrentPower:        storage.Attribute{root + 0x36, false},
-		CurrentStamina:      storage.Attribute{root + 0x37, false},
-		CurrentSpeed:        storage.Attribute{root + 0x38, false},
-		CurrentMagic:        storage.Attribute{root + 0x39, false},
-		CurrentHit:          storage.Attribute{root + 0x3A, false},
-		CurrentEvade:        storage.Attribute{root + 0x3B, false},
-		CurrentMagicDefense: storage.Attribute{root + 0x3C, false},
-		CurrentAttack:       storage.Attribute{root + 0x3D, false},
-		CurrentDefense:      storage.Attribute{root + 0x3E, false},
-		CurrentMaxHP:        storage.Attribute{root + 0x3F, true},
+		NameID:              storage.Attribute{root, 1},
+		CharID:              storage.Attribute{root + 0x01, 1},
+		HP:                  storage.Attribute{root + 0x03, 2},
+		MaxHP:               storage.Attribute{root + 0x05, 2},
+		MP:                  storage.Attribute{root + 0x07, 2},
+		MaxMP:               storage.Attribute{root + 0x09, 2},
+		BasePower:           storage.Attribute{root + 0x0B, 1},
+		BaseStamina:         storage.Attribute{root + 0x0C, 1},
+		BaseSpeed:           storage.Attribute{root + 0x0D, 1},
+		BaseMagic:           storage.Attribute{root + 0x0E, 1},
+		BaseHit:             storage.Attribute{root + 0x0F, 1},
+		BaseEvade:           storage.Attribute{root + 0x10, 1},
+		BaseMagicDefense:    storage.Attribute{root + 0x11, 1},
+		Level:               storage.Attribute{root + 0x12, 1},
+		Experience:          storage.Attribute{root + 0x13, 3},
+		Helmet:              storage.Attribute{root + 0x27, 1},
+		Armor:               storage.Attribute{root + 0x28, 1},
+		Weapon:              storage.Attribute{root + 0x29, 1},
+		Relic:               storage.Attribute{root + 0x2A, 1},
+		ExpToLevel:          storage.Attribute{root + 0x2B, 2},
+		CurrentPower:        storage.Attribute{root + 0x36, 1},
+		CurrentStamina:      storage.Attribute{root + 0x37, 1},
+		CurrentSpeed:        storage.Attribute{root + 0x38, 1},
+		CurrentMagic:        storage.Attribute{root + 0x39, 1},
+		CurrentHit:          storage.Attribute{root + 0x3A, 1},
+		CurrentEvade:        storage.Attribute{root + 0x3B, 1},
+		CurrentMagicDefense: storage.Attribute{root + 0x3C, 1},
+		CurrentAttack:       storage.Attribute{root + 0x3D, 1},
+		CurrentDefense:      storage.Attribute{root + 0x3E, 1},
+		CurrentMaxHP:        storage.Attribute{root + 0x3F, 2},
 	}
 }

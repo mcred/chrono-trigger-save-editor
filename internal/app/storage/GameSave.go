@@ -8,7 +8,7 @@ import (
 
 type Attribute struct {
 	Location int
-	Is16Bit  bool
+	ByteLen   uint
 }
 
 type Game struct {
@@ -18,21 +18,29 @@ type Game struct {
 
 func (g *Game) GetValue(a Attribute) uint {
 	var r uint
-	if a.Is16Bit {
+	switch a.ByteLen {
+	case 3:
+		b := []byte{0,0,0,0}
+		for i := uint(0); i < a.ByteLen; i++ {
+			b[i] = g.Data[uint(a.Location) + i]
+		}
+		r =  uint(binary.LittleEndian.Uint32(b))
+	case 2:
 		r = uint(binary.LittleEndian.Uint16(g.Data[a.Location : a.Location+2]))
-	} else {
+	default:
 		r = uint(g.Data[a.Location])
 	}
 	return r
 }
 
 func (g *Game) SetValue(a Attribute, v uint) {
-	if a.Is16Bit {
+	switch a.ByteLen {
+	case 2:
 		b := make([]byte, 2)
 		binary.LittleEndian.PutUint16(b, uint16(v))
 		g.Data[a.Location] = b[0]
 		g.Data[a.Location+1] = b[1]
-	} else {
+	default:
 		g.Data[a.Location] = byte(v)
 	}
 }
@@ -66,10 +74,10 @@ func (g *Game) generateChecksum() {
 			if checksum > 0xFFFF {
 				checksum -= 0xFFFF
 			}
-			checksum += uint(g.GetValue(Attribute{i, true}))
+			checksum += uint(g.GetValue(Attribute{i, 2}))
 		}
 		checksum &= 0xFFFF
 		l := 0x1FF0 + ((slot - 1) * 2)
-		g.SetValue(Attribute{l, true}, checksum)
+		g.SetValue(Attribute{l, 2}, checksum)
 	}
 }

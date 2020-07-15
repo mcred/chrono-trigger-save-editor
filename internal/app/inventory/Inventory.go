@@ -37,3 +37,42 @@ func (i Inventory) GetVals() []string {
 	}
 	return v
 }
+
+// AllItems : Inventory list of all Items
+func AllItems() Inventory {
+	var items []Item
+	for _, item := range Swords() {
+		items = append(items, item)
+	}
+	for _, item := range Bows() {
+		items = append(items, item)
+	}
+	for _, item := range Guns() {
+		items = append(items, item)
+	}
+	for _, item := range Arms() {
+		items = append(items, item)
+	}
+	for _, item := range Blades() {
+		items = append(items, item)
+	}
+	for _, item := range Fists() {
+		items = append(items, item)
+	}
+	for _, item := range Scythes() {
+		items = append(items, item)
+	}
+	for _, item := range Helmets() {
+		items = append(items, item)
+	}
+	for _, item := range Arms() {
+		items = append(items, item)
+	}
+	for _, item := range Relics() {
+		items = append(items, item)
+	}
+	for _, item := range Consumables() {
+		items = append(items, item)
+	}
+	return items
+}
