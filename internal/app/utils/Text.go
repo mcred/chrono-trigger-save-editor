@@ -93,11 +93,10 @@ func GetCharFromInt(i uint) string {
 	return CharMap[i]
 }
 
-
 // GetIntFromChar: uint Get uint value for string character
 func GetIntFromChar(c string) uint {
 	var i uint
-	for index,element := range CharMap{
+	for index, element := range CharMap {
 		if element == c {
 			i = index
 		}
@@ -124,8 +123,8 @@ func DecodeName(c characters.Character, g storage.Game) string {
 }
 
 // EncodeName : []uint Generate uint splice for character string
-func EncodeName(n string) []uint{
-	i := []uint{0,0,0,0,0,0}
+func EncodeName(n string) []uint {
+	i := []uint{0, 0, 0, 0, 0, 0}
 	for p, c := range n {
 		i[p] = GetIntFromChar(string(c))
 	}
