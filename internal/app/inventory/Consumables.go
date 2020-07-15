@@ -2,7 +2,7 @@ package inventory
 
 // Consumables : Inventory list of available Consumables for Party Inventory
 func Consumables() Inventory {
-	return []Item {
+	return []Item{
 		{0xBD, "Tonic"},
 		{0xBE, "Mid Tonic"},
 		{0xBF, "Full Tonic"},
