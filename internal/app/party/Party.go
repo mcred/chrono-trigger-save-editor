@@ -50,10 +50,10 @@ func GetParty() Party {
 	}
 }
 
-func (p *Party)LoadInventory(g storage.Game) {
+func (p *Party) LoadInventory(g storage.Game) {
 	for i := 0x0; i <= 0xFF; i++ {
 		v := g.GetValue(storage.Attribute{i, 1})
-		if v != 0{
+		if v != 0 {
 			item := Item{
 				inventory.AllItems().GetValByID(v),
 				g.GetValue(storage.Attribute{i + 0x100, 1}),

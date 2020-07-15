@@ -72,7 +72,7 @@ func showCharacterAttributes(c characters.Character, g storage.Game) {
 	fmt.Println(g.GetValue(c.CurrentMaxHP))
 }
 
-func showPartyAttributes(p party.Party, g storage.Game){
+func showPartyAttributes(p party.Party, g storage.Game) {
 	fmt.Print("Member1: ")
 	fmt.Println(g.GetValue(p.Member1))
 	fmt.Print("Member2: ")

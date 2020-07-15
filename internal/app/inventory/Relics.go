@@ -1,7 +1,7 @@
 package inventory
 
 // Relics : Inventory list of available Relics for All Characters
-func Relics() Inventory{
+func Relics() Inventory {
 	return []Item{
 		{0x95, "Bandana"},
 		{0x96, "Ribbon"},

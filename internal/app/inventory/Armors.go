@@ -37,4 +37,3 @@ func Armors() Inventory {
 		{0x7A, "Taban Suit"},
 	}
 }
-
