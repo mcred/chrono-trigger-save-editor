@@ -74,5 +74,8 @@ func AllItems() Inventory {
 	for _, item := range Consumables() {
 		items = append(items, item)
 	}
+	for _, item := range Armors() {
+		items = append(items, item)
+	}
 	return items
 }
