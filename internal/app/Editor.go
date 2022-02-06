@@ -6,104 +6,102 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/data/binding"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/storage"
 	"fyne.io/fyne/v2/widget"
 	"github.com/mcred/savetools"
 	"net/url"
-	"strconv"
 )
 
 //func showCharacterAttributes(c characters.Character, g storage.Game) {
 //	//fmt.Println(utils.DecodeName(c, g))
 //	//fmt.Print("Name ID: ")
-//	//fmt.Println(g.GetValue(c.NameID))
+//	//fmt.Println(g.getValue(c.NameID))
 //	//fmt.Print("Character ID: ")
-//	//fmt.Println(g.GetValue(c.CharID))
+//	//fmt.Println(g.getValue(c.CharID))
 //	//fmt.Print("Current HP: ")
-//	//fmt.Println(g.GetValue(c.HP))
+//	//fmt.Println(g.getValue(c.HP))
 //	//fmt.Print("Max Hp: ")
-//	//fmt.Println(g.GetValue(c.MaxHP))
+//	//fmt.Println(g.getValue(c.MaxHP))
 //	//fmt.Print("Current MP: ")
-//	//fmt.Println(g.GetValue(c.MP))
+//	//fmt.Println(g.getValue(c.MP))
 //	//fmt.Print("Base Max HP:")
-//	//fmt.Println(g.GetValue(c.MaxMP))
+//	//fmt.Println(g.getValue(c.MaxMP))
 //	//fmt.Print("Base Power: ")
-//	//fmt.Println(g.GetValue(c.BasePower))
+//	//fmt.Println(g.getValue(c.BasePower))
 //	//fmt.Print("Base Stamina: ")
-//	//fmt.Println(g.GetValue(c.BaseStamina))
+//	//fmt.Println(g.getValue(c.BaseStamina))
 //	//fmt.Print("Base Speed: ")
-//	//fmt.Println(g.GetValue(c.BaseSpeed))
+//	//fmt.Println(g.getValue(c.BaseSpeed))
 //	//fmt.Print("Base Magic: ")
-//	//fmt.Println(g.GetValue(c.BaseMagic))
+//	//fmt.Println(g.getValue(c.BaseMagic))
 //	//fmt.Print("Base Hit: ")
-//	//fmt.Println(g.GetValue(c.BaseHit))
+//	//fmt.Println(g.getValue(c.BaseHit))
 //	//fmt.Print("Base Evade: ")
-//	//fmt.Println(g.GetValue(c.BaseEvade))
+//	//fmt.Println(g.getValue(c.BaseEvade))
 //	//fmt.Print("Base Magic Defence: ")
-//	//fmt.Println(g.GetValue(c.BaseMagicDefense))
+//	//fmt.Println(g.getValue(c.BaseMagicDefense))
 //	//fmt.Print("Level: ")
-//	//fmt.Println(g.GetValue(c.Level))
+//	//fmt.Println(g.getValue(c.Level))
 //	//fmt.Print("Experience: ")
-//	//fmt.Println(g.GetValue(c.Experience))
+//	//fmt.Println(g.getValue(c.Experience))
 //	//fmt.Print("Helmet: ")
-//	//fmt.Println(g.GetValue(c.Helmet))
+//	//fmt.Println(g.getValue(c.Helmet))
 //	//fmt.Print("Armors: ")
-//	//fmt.Println(g.GetValue(c.Armor))
+//	//fmt.Println(g.getValue(c.Armor))
 //	//fmt.Print("Weapon: ")
-//	//fmt.Println(g.GetValue(c.Weapon))
+//	//fmt.Println(g.getValue(c.Weapon))
 //	//fmt.Print("Relic: ")
-//	//fmt.Println(g.GetValue(c.Relic))
+//	//fmt.Println(g.getValue(c.Relic))
 //	//fmt.Print("Exp To Level: ")
-//	//fmt.Println(g.GetValue(c.ExpToLevel))
+//	//fmt.Println(g.getValue(c.ExpToLevel))
 //	//fmt.Print("Current Power: ")
-//	//fmt.Println(g.GetValue(c.CurrentPower))
+//	//fmt.Println(g.getValue(c.CurrentPower))
 //	//fmt.Print("Current Stamina: ")
-//	//fmt.Println(g.GetValue(c.CurrentStamina))
+//	//fmt.Println(g.getValue(c.CurrentStamina))
 //	//fmt.Print("Current Speed: ")
-//	//fmt.Println(g.GetValue(c.CurrentSpeed))
+//	//fmt.Println(g.getValue(c.CurrentSpeed))
 //	//fmt.Print("Current Magic: ")
-//	//fmt.Println(g.GetValue(c.CurrentMagic))
+//	//fmt.Println(g.getValue(c.CurrentMagic))
 //	//fmt.Print("Current Hit: ")
-//	//fmt.Println(g.GetValue(c.CurrentHit))
+//	//fmt.Println(g.getValue(c.CurrentHit))
 //	//fmt.Print("Current Evade: ")
-//	//fmt.Println(g.GetValue(c.CurrentEvade))
+//	//fmt.Println(g.getValue(c.CurrentEvade))
 //	//fmt.Print("Current Magic Defence: ")
-//	//fmt.Println(g.GetValue(c.CurrentMagicDefense))
+//	//fmt.Println(g.getValue(c.CurrentMagicDefense))
 //	//fmt.Print("Current Attack: ")
-//	//fmt.Println(g.GetValue(c.CurrentAttack))
+//	//fmt.Println(g.getValue(c.CurrentAttack))
 //	//fmt.Print("Current Defense: ")
-//	//fmt.Println(g.GetValue(c.CurrentDefense))
+//	//fmt.Println(g.getValue(c.CurrentDefense))
 //	//fmt.Print("Current Max HP: ")
-//	//fmt.Println(g.GetValue(c.CurrentMaxHP))
+//	//fmt.Println(g.getValue(c.CurrentMaxHP))
 //}
 
 //func showPartyAttributes(p party.Party, g storage.Game) {
 //	//fmt.Print("Member1: ")
-//	//fmt.Println(g.GetValue(p.Member1))
+//	//fmt.Println(g.getValue(p.Member1))
 //	//fmt.Print("Member2: ")
-//	//fmt.Println(g.GetValue(p.Member2))
+//	//fmt.Println(g.getValue(p.Member2))
 //	//fmt.Print("Member3: ")
-//	//fmt.Println(g.GetValue(p.Member3))
+//	//fmt.Println(g.getValue(p.Member3))
 //	//fmt.Print("SaveCount: ")
-//	//fmt.Println(g.GetValue(p.SaveCount))
+//	//fmt.Println(g.getValue(p.SaveCount))
 //	//fmt.Print("Gold: ")
-//	//fmt.Println(g.GetValue(p.Gold))
+//	//fmt.Println(g.getValue(p.Gold))
 //	//fmt.Print("MilliSeconds: ")
-//	//fmt.Println(g.GetValue(p.MilliSeconds))
+//	//fmt.Println(g.getValue(p.MilliSeconds))
 //	//fmt.Print("Seconds: ")
-//	//fmt.Println(g.GetValue(p.Seconds))
+//	//fmt.Println(g.getValue(p.Seconds))
 //	//fmt.Print("Minutes: ")
-//	//fmt.Println(g.GetValue(p.Minutes))
+//	//fmt.Println(g.getValue(p.Minutes))
 //	//fmt.Print("Hours: ")
-//	//fmt.Println(g.GetValue(p.Hours))
+//	//fmt.Println(g.getValue(p.Hours))
 //	//fmt.Print("World: ")
-//	//fmt.Println(g.GetValue(p.World))
+//	//fmt.Println(g.getValue(p.World))
 //	//fmt.Print("PosX: ")
-//	//fmt.Println(g.GetValue(p.PosX))
+//	//fmt.Println(g.getValue(p.PosX))
 //	//fmt.Print("PosY: ")
-//	//fmt.Println(g.GetValue(p.PosY))
+//	//fmt.Println(g.getValue(p.PosY))
 //	//
 //	//p.LoadInventory(g)
 //	//fmt.Println("Inventory: ")
@@ -125,12 +123,10 @@ func (a *App) loadCard() {
 		}
 
 		a.card, err = savetools.Load(reader.URI().Path(), 3, 0xA00)
-		a.crono.hp.val.Set(strconv.Itoa(int(a.card.GetValue(a.crono.hp.attr))))
-		a.crono.hp.val.AddListener(binding.NewDataListener(func() {
-			val, _ := a.crono.hp.val.Get()
-			u, _ := strconv.ParseUint(val, 0, a.crono.hp.attr.Bits)
-			a.card.SetValue(a.crono.hp.attr, uint(u))
-		}))
+
+		a.crono.Init(&a.card)
+		a.marle.Init(&a.card)
+		a.lucca.Init(&a.card)
 
 		if err != nil {
 			dialog.ShowError(err, a.mainWin)
@@ -159,7 +155,7 @@ func generateChecksum(c savetools.Card) savetools.Card {
 		}
 		checksum &= 0xFFFF
 		l := 0x1FF0 + ((slot - 1) * 2)
-		c.SetValue(savetools.Attribute{l, 16, binary.LittleEndian}, checksum)
+		c.SetValue(savetools.Attribute{l, 16, binary.LittleEndian}, int(checksum))
 	}
 	return c
 }
@@ -201,34 +197,24 @@ func (a *App) init() {
 	}
 }
 
-type param struct {
-	val  binding.String
-	attr savetools.Attribute
-}
-type testChar struct {
-	hp param
-}
-
 type App struct {
 	app     fyne.App
 	mainWin fyne.Window
 	card    savetools.Card
-	crono   testChar
+	crono   characters.Character
+	marle   characters.Character
+	lucca   characters.Character
 }
 
 func Run() {
-	crono := testChar{hp: param{binding.NewString(), characters.Crono().HP}}
-
 	a := app.New()
 	w := a.NewWindow("Chrono Trigger Save File Editor")
-	ui := &App{app: a, mainWin: w, card: savetools.Card{}, crono: crono}
+	ui := &App{app: a, mainWin: w, card: savetools.Card{}, crono: characters.Crono(), marle: characters.Marle(), lucca: characters.Lucca()}
 	ui.init()
-
 	w.SetContent(container.NewVBox(
-		container.NewVBox(
-			widget.NewLabelWithData(crono.hp.val),
-			widget.NewEntryWithData(crono.hp.val),
-		),
+		ui.crono.GenerateForm(&ui.card),
+		ui.marle.GenerateForm(&ui.card),
+		ui.lucca.GenerateForm(&ui.card),
 	))
 	w.ShowAndRun()
 }

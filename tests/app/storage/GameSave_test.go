@@ -20,21 +20,21 @@ func TestCanLoad(t *testing.T) {
 func TestCanGet8BitValue(t *testing.T) {
 	v := game1.GetValue(storage.Attribute{0x203, 1})
 	if v != 70 {
-		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 70, v)
+		t.Errorf("getValue(0x203, false): expected %d, actual %d", 70, v)
 	}
 }
 
 func TestCanGet16BitValue(t *testing.T) {
 	v := game2.GetValue(storage.Attribute{0x1FF0, 2})
 	if v != 25819 {
-		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 25819, v)
+		t.Errorf("getValue(0x203, false): expected %d, actual %d", 25819, v)
 	}
 }
 
 func TestCanGet24BitValue(t *testing.T) {
 	v := game2.GetValue(storage.Attribute{0x5E0, 3})
 	if v != 583 {
-		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 583, v)
+		t.Errorf("getValue(0x203, false): expected %d, actual %d", 583, v)
 	}
 }
 
@@ -42,7 +42,7 @@ func TestCanSet8BitValue(t *testing.T) {
 	game1.SetValue(storage.Attribute{0x203, 1}, 255)
 	v := game1.GetValue(storage.Attribute{0x203, 1})
 	if v != 255 {
-		t.Errorf("GetValue(0x203, false): expected %d, actual %d", 255, v)
+		t.Errorf("getValue(0x203, false): expected %d, actual %d", 255, v)
 	}
 }
 
@@ -50,7 +50,7 @@ func TestCanSet16BitValue(t *testing.T) {
 	game2.SetValue(storage.Attribute{0x203, 2}, 2003)
 	v := game2.GetValue(storage.Attribute{0x203, 2})
 	if v != 2003 {
-		t.Errorf("GetValue(0x203, true): expected %d, actual %d", 2003, v)
+		t.Errorf("getValue(0x203, true): expected %d, actual %d", 2003, v)
 	}
 }
 
