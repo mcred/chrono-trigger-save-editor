@@ -2,7 +2,8 @@ package utils
 
 import (
 	"ChronoTrigger/internal/app/characters"
-	"ChronoTrigger/internal/app/storage"
+	"encoding/binary"
+	"github.com/mcred/savetools"
 )
 
 // CharMap : map[uint]string in game int to string mapping for text
@@ -105,15 +106,15 @@ func GetIntFromChar(c string) uint {
 }
 
 // DecodeName : string Get name for character from Save File
-func DecodeName(c characters.Character, g storage.Game) string {
-	id := g.GetValue(c.NameID)
+func DecodeName(c characters.Character, card savetools.Card) string {
+	id := card.GetValue(c.NameID)
 	ints := []uint{
-		g.GetValue(storage.Attribute{int(0x5B0 + (id * 6)), 1}),
-		g.GetValue(storage.Attribute{int(0x5B1 + (id * 6)), 1}),
-		g.GetValue(storage.Attribute{int(0x5B2 + (id * 6)), 1}),
-		g.GetValue(storage.Attribute{int(0x5B3 + (id * 6)), 1}),
-		g.GetValue(storage.Attribute{int(0x5B4 + (id * 6)), 1}),
-		g.GetValue(storage.Attribute{int(0x5B5 + (id * 6)), 1}),
+		card.GetValue(savetools.Attribute{int(0x5B0 + (id * 6)), 8, binary.LittleEndian}),
+		card.GetValue(savetools.Attribute{int(0x5B1 + (id * 6)), 8, binary.LittleEndian}),
+		card.GetValue(savetools.Attribute{int(0x5B2 + (id * 6)), 8, binary.LittleEndian}),
+		card.GetValue(savetools.Attribute{int(0x5B3 + (id * 6)), 8, binary.LittleEndian}),
+		card.GetValue(savetools.Attribute{int(0x5B4 + (id * 6)), 8, binary.LittleEndian}),
+		card.GetValue(savetools.Attribute{int(0x5B5 + (id * 6)), 8, binary.LittleEndian}),
 	}
 	var s string
 	for _, i := range ints {
