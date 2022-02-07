@@ -1,6 +1,7 @@
 package characters
 
 import (
+	"ChronoTrigger/internal/app/inventory"
 	"encoding/binary"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
@@ -8,30 +9,6 @@ import (
 	"fyne.io/fyne/v2/widget"
 	"github.com/mcred/savetools"
 )
-
-// Attr : struct that embeds and extends the savetools attribute
-type Attr struct {
-	savetools.Attribute
-	Value binding.Int
-}
-
-func (a *Attr) init(c *savetools.Card) {
-	a.getValue(c)
-	a.Value.AddListener(binding.NewDataListener(func() {
-		a.setValue(c)
-	}))
-}
-
-func (a *Attr) getValue(c *savetools.Card) {
-	aa := savetools.Attribute{a.Location, a.Bits, a.Endianness}
-	a.Value.Set(c.GetValue(aa))
-}
-
-func (a *Attr) setValue(c *savetools.Card) {
-	aa := savetools.Attribute{a.Location, a.Bits, a.Endianness}
-	v, _ := a.Value.Get()
-	c.SetValue(aa, v)
-}
 
 // Character : struct with editable game attributes
 type Character struct {
@@ -157,65 +134,100 @@ func (c *Character) Init(card *savetools.Card) {
 	c.Name.Set(c.DecodeName(card))
 }
 
+func (a *Attr) CreateSelect(i inventory.Inventory) fyne.Widget {
+	//s := widget.NewSelect(i.GetVals(), func(value string) {
+	//	a.Value.Set(i.GetIDByVal(value))
+	//})
+	//v, _ := a.Value.Get()
+	//s.SetSelected(i.GetValByID(v))
+
+	items := i.GetVals()
+	data := binding.BindStringList(&items)
+	list := widget.NewListWithData(data,
+		func() fyne.CanvasObject {
+			return widget.NewLabel("template")
+		},
+		func(r binding.DataItem, o fyne.CanvasObject) {
+			o.(*widget.Label).Bind(r.(binding.String))
+		},
+	)
+	var selected int
+	for c, d := range items {
+		item, _ := a.Value.Get()
+		s := i.GetValByID(item)
+		if s == d {
+			selected = c
+		}
+	}
+	list.Select(selected) //not loaded, yet
+	list.OnSelected = func(id widget.ListItemID) {
+		a.Value.Set(i.GetIDByVal(items[id]))
+	}
+	return list
+}
+
 func (c *Character) GenerateForm(card *savetools.Card) *fyne.Container {
 	f := container.NewVBox(
 		widget.NewLabelWithData(c.Name),
-		widget.NewLabel("Current HP: "),
-		widget.NewEntryWithData(binding.IntToString(c.HP.Value)),
-		widget.NewLabel("Max Hp: "),
-		widget.NewEntryWithData(binding.IntToString(c.MaxHP.Value)),
-		widget.NewLabel("Current MP: "),
-		widget.NewEntryWithData(binding.IntToString(c.MP.Value)),
-		widget.NewLabel("Base Max HP:"),
-		widget.NewEntryWithData(binding.IntToString(c.MaxMP.Value)),
-		widget.NewLabel("Base Power: "),
-		widget.NewEntryWithData(binding.IntToString(c.BasePower.Value)),
-		widget.NewLabel("Base Stamina: "),
-		widget.NewEntryWithData(binding.IntToString(c.BaseStamina.Value)),
-		widget.NewLabel("Base Speed: "),
-		widget.NewEntryWithData(binding.IntToString(c.BaseSpeed.Value)),
-		widget.NewLabel("Base Magic: "),
-		widget.NewEntryWithData(binding.IntToString(c.BaseMagic.Value)),
-		widget.NewLabel("Base Hit: "),
-		widget.NewEntryWithData(binding.IntToString(c.BaseHit.Value)),
-		widget.NewLabel("Base Evade: "),
-		widget.NewEntryWithData(binding.IntToString(c.BaseEvade.Value)),
-		widget.NewLabel("Base Magic Defence: "),
-		widget.NewEntryWithData(binding.IntToString(c.BaseMagicDefense.Value)),
-		widget.NewLabel("Level: "),
-		widget.NewEntryWithData(binding.IntToString(c.Level.Value)),
+		//widget.NewLabel("Current HP: "),
+		//widget.NewEntryWithData(binding.IntToString(c.HP.Value)),
+		//widget.NewLabel("Max Hp: "),
+		//widget.NewEntryWithData(binding.IntToString(c.MaxHP.Value)),
+		//widget.NewLabel("Current MP: "),
+		//widget.NewEntryWithData(binding.IntToString(c.MP.Value)),
+		//widget.NewLabel("Base Max HP:"),
+		//widget.NewEntryWithData(binding.IntToString(c.MaxMP.Value)),
+		//widget.NewLabel("Base Power: "),
+		//widget.NewEntryWithData(binding.IntToString(c.BasePower.Value)),
+		//widget.NewLabel("Base Stamina: "),
+		//widget.NewEntryWithData(binding.IntToString(c.BaseStamina.Value)),
+		//widget.NewLabel("Base Speed: "),
+		//widget.NewEntryWithData(binding.IntToString(c.BaseSpeed.Value)),
+		//widget.NewLabel("Base Magic: "),
+		//widget.NewEntryWithData(binding.IntToString(c.BaseMagic.Value)),
+		//widget.NewLabel("Base Hit: "),
+		//widget.NewEntryWithData(binding.IntToString(c.BaseHit.Value)),
+		//widget.NewLabel("Base Evade: "),
+		//widget.NewEntryWithData(binding.IntToString(c.BaseEvade.Value)),
+		//widget.NewLabel("Base Magic Defence: "),
+		//widget.NewEntryWithData(binding.IntToString(c.BaseMagicDefense.Value)),
+		//widget.NewLabel("Level: "),
+		//widget.NewEntryWithData(binding.IntToString(c.Level.Value)),
 		//widget.NewLabel("Experience: "),
 		//widget.NewEntryWithData(binding.IntToString(c.Experience.Value)),
-		widget.NewLabel("Helmet: "),
+
 		widget.NewEntryWithData(binding.IntToString(c.Helmet.Value)),
-		widget.NewLabel("Armors: "),
-		widget.NewEntryWithData(binding.IntToString(c.Armor.Value)),
-		widget.NewLabel("Weapon: "),
-		widget.NewEntryWithData(binding.IntToString(c.Weapon.Value)),
-		widget.NewLabel("Relic: "),
-		widget.NewEntryWithData(binding.IntToString(c.Relic.Value)),
-		widget.NewLabel("Exp To Level: "),
-		widget.NewEntryWithData(binding.IntToString(c.ExpToLevel.Value)),
-		widget.NewLabel("Current Power: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentPower.Value)),
-		widget.NewLabel("Current Stamina: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentStamina.Value)),
-		widget.NewLabel("Current Speed: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentSpeed.Value)),
-		widget.NewLabel("Current Magic: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentMagic.Value)),
-		widget.NewLabel("Current Hit: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentHit.Value)),
-		widget.NewLabel("Current Evade: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentEvade.Value)),
-		widget.NewLabel("Current Magic Defence: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentMagicDefense.Value)),
-		widget.NewLabel("Current Attack: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentAttack.Value)),
-		widget.NewLabel("Current Defense: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentDefense.Value)),
-		widget.NewLabel("Current Max HP: "),
-		widget.NewEntryWithData(binding.IntToString(c.CurrentMaxHP.Value)),
+		widget.NewLabel("Helmet: "),
+		c.Helmet.CreateSelect(inventory.Helmets()),
+
+		//widget.NewLabel("Armors: "),
+		//widget.NewEntryWithData(binding.IntToString(c.Armor.Value)),
+		//widget.NewLabel("Weapon: "),
+		//widget.NewEntryWithData(binding.IntToString(c.Weapon.Value)),
+		//widget.NewLabel("Relic: "),
+		//widget.NewEntryWithData(binding.IntToString(c.Relic.Value)),
+		//widget.NewLabel("Exp To Level: "),
+		//widget.NewEntryWithData(binding.IntToString(c.ExpToLevel.Value)),
+		//widget.NewLabel("Current Power: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentPower.Value)),
+		//widget.NewLabel("Current Stamina: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentStamina.Value)),
+		//widget.NewLabel("Current Speed: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentSpeed.Value)),
+		//widget.NewLabel("Current Magic: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentMagic.Value)),
+		//widget.NewLabel("Current Hit: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentHit.Value)),
+		//widget.NewLabel("Current Evade: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentEvade.Value)),
+		//widget.NewLabel("Current Magic Defence: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentMagicDefense.Value)),
+		//widget.NewLabel("Current Attack: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentAttack.Value)),
+		//widget.NewLabel("Current Defense: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentDefense.Value)),
+		//widget.NewLabel("Current Max HP: "),
+		//widget.NewEntryWithData(binding.IntToString(c.CurrentMaxHP.Value)),
 	)
 	return f
 }
