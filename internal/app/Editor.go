@@ -49,7 +49,7 @@ import (
 //	//}
 //}
 
-func (a *App) loadCard() {
+func (a *editorApp) loadCard() {
 	d := dialog.NewFileOpen(func(reader fyne.URIReadCloser, err error) {
 		if err != nil {
 			dialog.ShowError(err, a.mainWin)
@@ -97,7 +97,7 @@ func generateChecksum(c savetools.Card) savetools.Card {
 	return c
 }
 
-func (a *App) saveCard() {
+func (a *editorApp) saveCard() {
 	card := generateChecksum(a.card)
 	err := card.Save()
 	if err != nil {
@@ -106,7 +106,7 @@ func (a *App) saveCard() {
 	}
 }
 
-func (a *App) loadUI() {
+func (a *editorApp) loadUI() {
 	link, _ := url.Parse("https://github.com/mcred/chrono-trigger-save-editor")
 	mainMenu := fyne.NewMainMenu(
 		fyne.NewMenu("File",
@@ -126,7 +126,7 @@ func (a *App) loadUI() {
 	a.mainWin.SetMainMenu(mainMenu)
 }
 
-func (a *App) init() {
+func (a *editorApp) init() {
 	a.mainWin.Resize(fyne.NewSize(800, 600))
 	a.loadUI()
 	if a.card.Path == "" {
@@ -134,7 +134,7 @@ func (a *App) init() {
 	}
 }
 
-type App struct {
+type editorApp struct {
 	app     fyne.App
 	mainWin fyne.Window
 	card    savetools.Card
@@ -143,16 +143,17 @@ type App struct {
 	lucca   characters.Character
 }
 
+// Run main entry point for chrono trigger editor
 func Run() {
 	a := app.New()
 	w := a.NewWindow("Chrono Trigger Save File Editor")
-	ui := &App{app: a, mainWin: w, card: savetools.Card{}, crono: characters.Crono(), marle: characters.Marle(), lucca: characters.Lucca()}
+	ui := &editorApp{app: a, mainWin: w, card: savetools.Card{}, crono: characters.Crono(), marle: characters.Marle(), lucca: characters.Lucca()}
 	ui.init()
 	w.SetContent(
 		container.NewVScroll(container.New(layout.NewGridLayout(3),
-			ui.crono.GenerateForm(&ui.card),
-			ui.marle.GenerateForm(&ui.card),
-			ui.lucca.GenerateForm(&ui.card),
+			ui.crono.GenerateForm(),
+			ui.marle.GenerateForm(),
+			ui.lucca.GenerateForm(),
 		)),
 	)
 	w.ShowAndRun()

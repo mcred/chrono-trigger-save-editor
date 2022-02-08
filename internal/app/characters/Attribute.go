@@ -18,11 +18,12 @@ type Attr struct {
 	Items inventory.Inventory
 }
 
+// AttrType enum struct
 type AttrType string
 
 const (
-	Entry  AttrType = "Entry"
-	Select AttrType = "Select"
+	entry AttrType = "entry"
+	list  AttrType = "list"
 )
 
 func (a *Attr) init(c *savetools.Card) {
@@ -79,7 +80,7 @@ func generate(l int, b int, t AttrType, i inventory.Inventory) Attr {
 		a = gen8Bit(l)
 	}
 	switch t {
-	case Select:
+	case list:
 		items := i.GetVals()
 		data := binding.BindStringList(&items)
 		list := widget.NewListWithData(data,

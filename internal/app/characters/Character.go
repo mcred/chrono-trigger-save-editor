@@ -50,40 +50,41 @@ type Character struct {
 // Creates form widget and sets up binding
 func CreateCharacter(root int, weapons inventory.Inventory) Character {
 	return Character{
-		NameID:           generate(root, 8, Entry, nil),
-		CharID:           generate(root+0x01, 8, Entry, nil),
-		HP:               generate(root+0x03, 16, Entry, nil),
-		MaxHP:            generate(root+0x05, 16, Entry, nil),
-		MP:               generate(root+0x07, 16, Entry, nil),
-		MaxMP:            generate(root+0x09, 16, Entry, nil),
-		BasePower:        generate(root+0x0B, 8, Entry, nil),
-		BaseStamina:      generate(root+0x0C, 8, Entry, nil),
-		BaseSpeed:        generate(root+0x0D, 8, Entry, nil),
-		BaseMagic:        generate(root+0x0E, 8, Entry, nil),
-		BaseHit:          generate(root+0x0F, 8, Entry, nil),
-		BaseEvade:        generate(root+0x10, 8, Entry, nil),
-		BaseMagicDefense: generate(root+0x11, 8, Entry, nil),
-		Level:            generate(root+0x12, 8, Entry, nil),
+		NameID:           generate(root, 8, entry, nil),
+		CharID:           generate(root+0x01, 8, entry, nil),
+		HP:               generate(root+0x03, 16, entry, nil),
+		MaxHP:            generate(root+0x05, 16, entry, nil),
+		MP:               generate(root+0x07, 16, entry, nil),
+		MaxMP:            generate(root+0x09, 16, entry, nil),
+		BasePower:        generate(root+0x0B, 8, entry, nil),
+		BaseStamina:      generate(root+0x0C, 8, entry, nil),
+		BaseSpeed:        generate(root+0x0D, 8, entry, nil),
+		BaseMagic:        generate(root+0x0E, 8, entry, nil),
+		BaseHit:          generate(root+0x0F, 8, entry, nil),
+		BaseEvade:        generate(root+0x10, 8, entry, nil),
+		BaseMagicDefense: generate(root+0x11, 8, entry, nil),
+		Level:            generate(root+0x12, 8, entry, nil),
 		//Experience:          gen8Bit(root + 0x13, 3},
-		Helmet:              generate(root+0x27, 8, Select, inventory.Helmets()),
-		Armor:               generate(root+0x28, 8, Select, inventory.Armors()),
-		Weapon:              generate(root+0x29, 8, Select, weapons),
-		Relic:               generate(root+0x2A, 8, Select, inventory.Relics()),
-		ExpToLevel:          generate(root+0x2B, 16, Entry, nil),
-		CurrentPower:        generate(root+0x36, 8, Entry, nil),
-		CurrentStamina:      generate(root+0x37, 8, Entry, nil),
-		CurrentSpeed:        generate(root+0x38, 8, Entry, nil),
-		CurrentMagic:        generate(root+0x39, 8, Entry, nil),
-		CurrentHit:          generate(root+0x3A, 8, Entry, nil),
-		CurrentEvade:        generate(root+0x3B, 8, Entry, nil),
-		CurrentMagicDefense: generate(root+0x3C, 8, Entry, nil),
-		CurrentAttack:       generate(root+0x3D, 8, Entry, nil),
-		CurrentDefense:      generate(root+0x3E, 8, Entry, nil),
-		CurrentMaxHP:        generate(root+0x3F, 16, Entry, nil),
+		Helmet:              generate(root+0x27, 8, list, inventory.Helmets()),
+		Armor:               generate(root+0x28, 8, list, inventory.Armors()),
+		Weapon:              generate(root+0x29, 8, list, weapons),
+		Relic:               generate(root+0x2A, 8, list, inventory.Relics()),
+		ExpToLevel:          generate(root+0x2B, 16, entry, nil),
+		CurrentPower:        generate(root+0x36, 8, entry, nil),
+		CurrentStamina:      generate(root+0x37, 8, entry, nil),
+		CurrentSpeed:        generate(root+0x38, 8, entry, nil),
+		CurrentMagic:        generate(root+0x39, 8, entry, nil),
+		CurrentHit:          generate(root+0x3A, 8, entry, nil),
+		CurrentEvade:        generate(root+0x3B, 8, entry, nil),
+		CurrentMagicDefense: generate(root+0x3C, 8, entry, nil),
+		CurrentAttack:       generate(root+0x3D, 8, entry, nil),
+		CurrentDefense:      generate(root+0x3E, 8, entry, nil),
+		CurrentMaxHP:        generate(root+0x3F, 16, entry, nil),
 		Name:                binding.NewString(),
 	}
 }
 
+// Init loads values from card during load
 func (c *Character) Init(card *savetools.Card) {
 	c.NameID.init(card)
 	c.CharID.init(card)
@@ -118,7 +119,8 @@ func (c *Character) Init(card *savetools.Card) {
 	c.Name.Set(c.DecodeName(card))
 }
 
-func (c *Character) GenerateForm(card *savetools.Card) *fyne.Container {
+// GenerateForm creates fyne widgets per character
+func (c *Character) GenerateForm() *fyne.Container {
 	f := container.NewVBox(
 		widget.NewLabelWithData(c.Name),
 		widget.NewLabel("Current HP: "),
@@ -269,7 +271,7 @@ func GetCharFromInt(i int) string {
 	return CharMap[i]
 }
 
-// GetIntFromChar: uint Get uint value for string character
+// GetIntFromChar : uint Get uint value for string character
 func GetIntFromChar(c string) int {
 	var i int
 	for index, element := range CharMap {

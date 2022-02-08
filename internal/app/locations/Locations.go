@@ -1,12 +1,15 @@
 package locations
 
+// Location : struct of location
 type Location struct {
 	Name  string
 	Value uint
 }
 
+// Locations : splice of locations
 type Locations []Location
 
+// GetLocations : get list of locations
 func GetLocations() Locations {
 	return []Location{
 		{"Load Screen", 0x0000},
