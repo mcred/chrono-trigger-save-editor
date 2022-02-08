@@ -5,13 +5,7 @@
 Edit SNES9x Chrono Trigger save files.
 
 ### Usage
-//TODO
+Download and install [release](https://github.com/mcred/chrono-trigger-save-editor/releases). 
 
-### Development
-Fork the repo.
-
-```bash
-make build
-make test
-make cover
-```
+### License
+Code and releases are available under an MIT License. Licensed works, modifications, and larger works may be distributed under different terms and without source code. Full license is available [here](https://github.com/mcred/chrono-trigger-save-editor/blob/master/LICENSE).
