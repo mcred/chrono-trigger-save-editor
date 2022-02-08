@@ -2,7 +2,7 @@ package inventory
 
 // Item : Basic struct for Inventory Item
 type Item struct {
-	ID   uint
+	ID   int
 	Name string
 }
 
@@ -10,7 +10,7 @@ type Item struct {
 type Inventory []Item
 
 // GetValByID : Get Inventory Item Name by ID
-func (i Inventory) GetValByID(id uint) string {
+func (i Inventory) GetValByID(id int) string {
 	for _, item := range i {
 		if item.ID == id {
 			return item.Name
@@ -20,7 +20,7 @@ func (i Inventory) GetValByID(id uint) string {
 }
 
 // GetIDByVal : Get Inventory Item ID by Name
-func (i Inventory) GetIDByVal(val string) uint {
+func (i Inventory) GetIDByVal(val string) int {
 	for _, item := range i {
 		if item.Name == val {
 			return item.ID
@@ -72,6 +72,9 @@ func AllItems() Inventory {
 		items = append(items, item)
 	}
 	for _, item := range Consumables() {
+		items = append(items, item)
+	}
+	for _, item := range Armors() {
 		items = append(items, item)
 	}
 	return items
