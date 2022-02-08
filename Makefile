@@ -1,3 +1,5 @@
+.PHONY: build
+
 build:
 	go build -o build/chrono cmd/chrono/main.go
 
