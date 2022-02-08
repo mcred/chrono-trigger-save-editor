@@ -1,5 +1,9 @@
 # Chrono Trigger SNES Save File Editor
 [![Maintainability](https://api.codeclimate.com/v1/badges/d0b766848532af239077/maintainability)](https://codeclimate.com/repos/5f0e43ee6269f001b50047be/maintainability)
+![GitHub all releases](https://img.shields.io/github/downloads/mcred/chrono-trigger-save-editor/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/mcred/chrono-trigger-save-editor)
+![GitHub Release Date](https://img.shields.io/github/release-date/mcred/chrono-trigger-save-editor)
+
 
 Edit SNES9x Chrono Trigger save files.
 
